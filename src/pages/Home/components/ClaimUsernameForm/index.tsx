@@ -9,7 +9,7 @@ const ClaimUsernameFormSchema = z.object({
   username: z
     .string()
     .min(3, {
-      message: "O nome de usuário precisa ter  no mínimo 3 letras.",
+      message: "O usuário precisa ter no mínimo 3 letras.",
     })
     .regex(/^([a-z\\\\-]+)$/i, {
       message: "O usuário pode ter apenas letras e hifens.",
