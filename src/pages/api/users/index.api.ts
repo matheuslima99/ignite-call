@@ -1,5 +1,5 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { prisma } from "@/lib/prisma";
+import { setCookie } from "nookies";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
@@ -12,11 +12,28 @@ export default async function handler(
 
   const { username, fullname } = req.body;
 
+  const userExists = await prisma.user.findUnique({
+    where: {
+      username,
+    },
+  });
+
+  if (userExists) {
+    res.status(400).json({
+      message: "Username already exists.",
+    });
+  }
+
   const user = await prisma.user.create({
     data: {
       username,
       fullname,
     },
+  });
+
+  setCookie({ res }, "@ignite-call:userId", user.id, {
+    maxAge: 60 * 60 * 24 * 7, // 7 days
+    path: "/",
   });
 
   return res.status(201).json(user);
