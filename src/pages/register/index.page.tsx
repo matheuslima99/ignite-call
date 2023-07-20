@@ -48,6 +48,8 @@ export default function Register() {
         username: data.username,
         fullname: data.fullname,
       });
+
+      router.push("/register/connect-calendar");
     } catch (err) {
       console.log(err);
     }
