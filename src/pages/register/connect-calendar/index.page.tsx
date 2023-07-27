@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { signIn, useSession } from "next-auth/react";
 import { AuthErrorMessage, ConnectBox, ConnectBoxContent } from "./styles";
 
-export default function Register() {
+export default function ConnectCalendar() {
   const session = useSession();
   const router = useRouter();
 
