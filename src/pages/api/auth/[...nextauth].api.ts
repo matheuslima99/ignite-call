@@ -24,9 +24,9 @@ export function buildNextAuthOptions(
           return {
             id: profile.sub,
             fullname: profile.name,
-            username: '',
+            username: "",
             email: profile.email,
-            avatar_url: profile.picture
+            avatar_url: profile.picture,
           };
         },
       }),
@@ -41,6 +41,13 @@ export function buildNextAuthOptions(
         }
 
         return true;
+      },
+
+      async session({ session, user }) {
+        return {
+          ...session,
+          user,
+        };
       },
     },
   };
