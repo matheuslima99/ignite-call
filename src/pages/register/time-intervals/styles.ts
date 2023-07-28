@@ -30,7 +30,7 @@ export const IntervalDay = styled("div", {
   alignItems: "center",
   gap: "$3",
 
-  flex: 1,
+
 });
 
 export const IntervalInputs = styled(IntervalDay, {
