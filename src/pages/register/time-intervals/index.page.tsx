@@ -70,7 +70,7 @@ export default function TimeIntervals() {
     control,
     watch,
     formState: { isSubmitting, errors },
-  } = useForm<timeIntervalsFormInput>({
+  } = useForm<timeIntervalsFormInput, any, timeIntervalsFormOutput>({
     resolver: zodResolver(timeIntervalsFormSchema),
     defaultValues: {
       intervals: [
@@ -95,7 +95,7 @@ export default function TimeIntervals() {
   const weekDays = getWeekDays();
 
   async function handleSetTimeIntervals(data: timeIntervalsFormOutput) {
-    console.log(data);
+    console.log(data.intervals);
   }
 
   return (
