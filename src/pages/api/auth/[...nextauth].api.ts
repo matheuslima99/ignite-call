@@ -4,8 +4,8 @@ import NextAuth, { NextAuthOptions } from "next-auth";
 import GoogleProvider, { GoogleProfile } from "next-auth/providers/google";
 
 export function buildNextAuthOptions(
-  req: NextApiRequest | NextPageContext['req'],
-  res: NextApiResponse | NextPageContext['res']
+  req: NextApiRequest | NextPageContext["req"],
+  res: NextApiResponse | NextPageContext["res"]
 ): NextAuthOptions {
   return {
     adapter: PrismaAdapter(req, res),
@@ -16,6 +16,9 @@ export function buildNextAuthOptions(
         clientSecret: process.env.GOOGLE_SECRET ?? "",
         authorization: {
           params: {
+            prompt: "consent",
+            access_type: "offline",
+            response_type: "code",
             scope:
               "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/calendar",
           },
